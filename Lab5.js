@@ -126,6 +126,12 @@ const assignment = {
         case "subtract":
           result = parseInt(a) - parseInt(b);
           break;
+        case "multiply":
+            result = parseInt(a) * parseInt(b);
+            break;
+        case "divide":
+            result = parseInt(a) / parseInt(b);
+            break;
         default:
           result = "Invalid operation";
       }
