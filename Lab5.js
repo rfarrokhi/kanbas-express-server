@@ -6,13 +6,20 @@ const assignment = {
     completed: false,
     score: 0,
   };
-  
-  const todos = [
-    { id: 1, title: "Task 1", completed: false },
-    { id: 2, title: "Task 2", completed: true },
-    { id: 3, title: "Task 3", completed: false },
-    { id: 4, title: "Task 4", completed: true },
-  ];
+
+const todos = [
+  {id: 1, title: "Task 1", completed: false},
+  {id: 2, title: "Task 2", completed: true},
+  {id: 3, title: "Task 3", completed: false},
+  {id: 4, title: "Task 4", completed: true},
+];
+
+const module = {
+  id: 1,
+  name: "Module 1",
+  description: "NodeJS",
+  course: "CS572",
+};
   
   const Lab5 = (app) => {
     app.put("/a5/todos/:id", (req, res) => {
@@ -85,19 +92,56 @@ const assignment = {
   
       res.json(todos);
     });
-  
-    app.get("/a5/assignment/title/:newTitle", (req, res) => {
-      const { newTitle } = req.params;
-      assignment.title = newTitle;
-      res.json(assignment);
-    });
-  
+
     app.get("/a5/assignment", (req, res) => {
       res.json(assignment);
     });
 
     app.get("/a5/assignment/title", (req, res) => {
       res.json(assignment.title);
+    });
+  
+    app.get("/a5/assignment/title/:newTitle", (req, res) => {
+      const { newTitle } = req.params;
+      assignment.title = newTitle;
+      res.json(assignment);
+    });
+
+    app.get("/a5/assignment/completed/:completeStatus", (req, res) => {
+        const { completeStatus } = req.params;
+        if (completeStatus === "true") {
+            assignment.completed = true;
+        } else {
+            assignment.completed = false;
+        }
+        res.json(assignment);
+    });
+
+    app.get("/a5/assignment/score/:newScore", (req, res) => {
+        const { newScore } = req.params;
+        assignment.score = newScore;
+        res.json(assignment);
+    });
+
+    app.get("/a5/module", (req, res) => {
+      res.json(module);
+    });
+
+    app.get("/a5/module/name", (req, res) => {
+      res.json(module.name);
+    });
+
+    app.get("/a5/module/name/:newName", (req, res) => {
+        const { newName } = req.params;
+        module.name = newName;
+        res.json(module);
+    });
+
+    app.get("/a5/module/description/:newDescription", (req, res) => {
+        const { newDescription } = req.params;
+        module.description = newDescription;
+        res.json(module);
+
     });
   
     app.get("/a5/welcome", (req, res) => {
